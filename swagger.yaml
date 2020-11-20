@@ -1,0 +1,48 @@
+openapi: 3.0.1
+
+info:
+  title: ainize-KoGPT-2-chatbot-swagger
+  description: |
+    Korean Chatbot. \
+    Send text, receive a reply from the chatbot.
+    ---
+
+      How to use:
+      * Type Korean
+  contact:
+    name: Ainizer - Sangil Park
+  version: "0.1"
+  license:
+    name: "MIT"
+    url: https://github.com/psi1104/KoGPT2-chatbot/blob/master/LICENSE
+
+servers:
+  - url: https://master-ko-gpt2-chatbot-psi1104.endpoint.ainize.ai
+
+paths:
+  /gpt2-chat:
+    post:
+      requestBody:
+        required: true
+        description: "Send text, receive a reply from the chatbot."
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+
+      responses:
+        '200':
+          description: success
+          content:
+            text/html:
+              schema:
+                type: string
+
+        '400':
+          description: Bad Request
+
+        '500':
+          description: Server side error
