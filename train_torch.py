@@ -206,9 +206,14 @@ class KoGPT2Chat(LightningModule):
         sent_tokens = tok(sent)
         with torch.no_grad():
             while 1:
-                q = input('user > ').strip()
+                try:
+                    q = input('user > ').strip()
+                except Exception:
+                    pass
+
                 if q == 'quit':
                     break
+
                 q_tok = tok(q)
                 a = ''
                 a_tok = []
@@ -218,11 +223,14 @@ class KoGPT2Chat(LightningModule):
                         self.vocab[EOS, SENT] + self.vocab[sent_tokens] +
                         self.vocab[EOS, S_TKN] +
                         self.vocab[a_tok]).unsqueeze(dim=0)
+
+                    input_ids = input_ids.to('cuda')
+
                     pred = self(input_ids)
                     gen = self.vocab.to_tokens(
                         torch.argmax(
                             pred,
-                            dim=-1).squeeze().numpy().tolist())[-1]
+                            dim=-1).cpu().squeeze().numpy().tolist())[-1]
                     if gen == EOS:
                         break
                     a += gen.replace('▁', ' ')
@@ -255,4 +263,5 @@ if __name__ == "__main__":
         logging.info('best model path {}'.format(checkpoint_callback.best_model_path))
     if args.chat:
         model = KoGPT2Chat.load_from_checkpoint(args.model_params)
+        model.to('cuda')
         model.chat()

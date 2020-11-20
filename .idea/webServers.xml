@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="4d0b5731-9741-43de-8f50-992426783837" name="nipa2">
+        <fileTransfer rootFolder="/home/sangil" accessType="SFTP" host="localhost" port="6000" sshConfigId="f3d69d24-b340-4d55-80f3-e660d2fd2a62" sshConfig="sangil@localhost:6000 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="b59adc35-9539-43b9-b7ff-d37e1a2797a7" name="nipa">
+        <fileTransfer rootFolder="/home/sangil" accessType="SFTP" host="14.49.44.200" port="16022" sshConfigId="ad953102-dc37-4579-9551-57a3d56c72e2" sshConfig="sangil@14.49.44.200:16022 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
