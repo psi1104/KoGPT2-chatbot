@@ -278,6 +278,7 @@ body {
   bottom: 0;
   height: auto;
   width: 100%;
+  margin-bottom: 130px;
 }
 
 textarea[name="chatbox"] {
